@@ -1,0 +1,12 @@
+<h1>New Membership</h1>
+
+<% if @beer_clubs.empty? %>
+  <p>You are already a member of all the clubs!</p>
+<% else %>
+  <%= form_for(@membership) do |f| %>
+    <%= f.select :beer_club_id, options_from_collection_for_select(@beer_clubs, :id, :name) %>
+    <%= f.submit %>
+  <% end %>
+<% end %>
+
+<%= link_to 'Back', memberships_path %>
