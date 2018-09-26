@@ -2,9 +2,11 @@
 
 <h1><%= @user.username %></h1>
 
-<p>
-  Has made <%= @user.ratings.size %> ratings, average rating <%= @user.average_rating %>
-</p>
+<% if @user.ratings.empty? %>
+  Has made no ratings yet
+<% else %>
+  Has made <%= pluralize(@user.ratings.size, 'rating') %>, average <%= @user.average_rating %>
+<% end %>
 
 <% if @user.favorite_style %>
   <p>Favorite style is <%= @user.favorite_style %></p>

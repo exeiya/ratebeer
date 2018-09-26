@@ -137,15 +137,3 @@ def create_beer_with_rating_and_style(object, style, score)
   FactoryBot.create(:rating, beer: beer, score: score, user: object[:user])
   beer
 end
-
-def create_beer_with_rating(object, score)
-  beer = FactoryBot.create(:beer)
-  FactoryBot.create(:rating, beer: beer, score: score, user: object[:user])
-  beer
-end
-
-def create_beer_with_many_ratings(object, *scores)
-  scores.each do |score|
-    create_beer_with_rating(object, score)
-  end
-end

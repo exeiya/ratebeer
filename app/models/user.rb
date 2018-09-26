@@ -29,7 +29,6 @@ class User < ApplicationRecord
 
   def favorite_brewery
     return nil if ratings.empty?
-    #ratings.first.beer.brewery
     rated_breweries_average = ratings.group_by{ |r| r.beer.brewery }.map do |brewery, rs|
       sum = rs.reduce(0){|sum, r| sum + r.score}
       { brewery: brewery, average: sum/rs.size }

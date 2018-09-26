@@ -1,5 +1,11 @@
 <h2>List of ratings</h2>
 
+<% if @ratings.empty? %>
+  <p>No ratings yet.</p>
+<% else %>
+  <p>Number of ratings: <%= @ratings.count %></p>
+<% end %>
+
 <ul>
   <% @ratings.each do |rating| %>
     <li> <%= rating %>
