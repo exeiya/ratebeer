@@ -17,6 +17,7 @@ group :production do
    gem 'rails_12factor'
 end
 
+gem 'httparty'
 gem 'bcrypt', '~> 3.1.7'
 
 # Use Puma as the app server
@@ -72,6 +73,7 @@ group :test do
   gem 'factory_bot_rails'
   gem 'launchy'
   gem 'simplecov', require: false
+  gem 'webmock'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
