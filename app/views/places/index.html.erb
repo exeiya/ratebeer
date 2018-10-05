@@ -7,7 +7,15 @@
   <%= submit_tag "Search" %>
 <% end %>
 
+<% if @weather %>
+  <h3>The current beer weather in <%= @weather['location']['name'] %></h3>
+  <p><b>temperature</b> <%= @weather['current']['temp_c'] %> Celsius</p>
+  <%= image_tag "https:#{@weather['current']['condition']['icon']}" %>
+  <p><b>wind</b> <%= (@weather['current']['wind_kph']/3.6).round(1) %> m/sec, direction <%= @weather['current']['wind_dir'] %></p>
+<% end %>
+
 <% if @places %>
+  <h3>Places to get beer <%= params[:city] %></h3>
   <table>
     <thead>
       <% Place.rendered_fields.each do |field| %>
