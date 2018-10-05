@@ -14,4 +14,7 @@ Rails.application.routes.draw do
 
   resources :places, only: [:index, :show]
   post 'places', to:'places#search'
+
+  #get 'styles', to: 'styles#index'
+  resources :styles, only: [:index, :show]
 end
