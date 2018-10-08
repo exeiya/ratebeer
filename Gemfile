@@ -19,6 +19,8 @@ end
 
 gem 'httparty'
 gem 'bcrypt', '~> 3.1.7'
+gem 'bootstrap', '~> 4.1.3'
+gem 'jquery-rails'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
