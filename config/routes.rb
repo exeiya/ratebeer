@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :users
   resources :beers
   resources :breweries
+  resources :styles
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'breweries#index'
   resources :ratings, only: [:index, :new, :create, :destroy]
@@ -15,6 +16,4 @@ Rails.application.routes.draw do
   resources :places, only: [:index, :show]
   post 'places', to:'places#search'
 
-  #get 'styles', to: 'styles#index'
-  resources :styles, only: [:index, :show]
 end
