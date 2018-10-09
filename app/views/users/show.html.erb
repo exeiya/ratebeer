@@ -1,4 +1,16 @@
-<h1><%= @user.username %></h1>
+<h1><%= @user.username %>
+<% if @user.closed and current_user and current_user.admin %>
+  <span class="badge badge-info">account closed</span>
+<% end %>
+</h1>
+
+<% if current_user and current_user.admin %>
+  <% if @user.closed %>  
+    <p><%= link_to "open account", toggle_closed_user_path(@user.id), method: :post, class: "btn btn-warning" %></p>
+  <% else %>
+    <p><%= link_to "close account", toggle_closed_user_path(@user.id), method: :post, class: "btn btn-danger" %></p>
+  <% end %>
+<% end %>
 
 <% if @user.ratings.empty? %>
   Has made no ratings yet
