@@ -3,7 +3,7 @@
 <% if @user.ratings.empty? %>
   Has made no ratings yet
 <% else %>
-  Has made <%= pluralize(@user.ratings.size, 'rating') %>, average <%= @user.average_rating %>
+  Has made <%= pluralize(@user.ratings.size, 'rating') %>, average <%= round(@user.average_rating) %>
 <% end %>
 
 <% if @user.favorite_style %>

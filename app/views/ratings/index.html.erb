@@ -6,10 +6,45 @@
   <p>Number of ratings: <%= @ratings.count %></p>
 <% end %>
 
+<div class="row">
+  <div class="col-4">
+    <h3>Best breweries</h3>
+    <%= render 'list', objects: @top_breweries %>
+  </div>
+  <div class="col-4">
+    <h3>Best beers</h3>
+    <%= render 'list', objects: @top_beers %>
+  </div>
+  <div class="col-4">
+    <h3>Best styles</h3>
+    <%= render 'list', objects: @top_styles %>
+  </div>
+</div>
+
+<h3>Most active users</h3>
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th></th>
+    <th>ratings</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @active_users.each do |user| %>
+      <tr>
+        <td><%= user.username %></td>
+        <td><%= user.ratings.count %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<h3>Recent ratings</h3>
 <ul>
-  <% @ratings.each do |rating| %>
-    <li> <%= rating %>
-    <%= link_to rating.user.username, user_path(rating.user.id) %></li>
+  <% @recent_ratings.each do |rating| %>
+    <li> <%= rating %> by
+    <%= link_to rating.user.username, user_path(rating.user.id) %>
+    at <%= rating.created_at %></li>
   <% end %>
 </ul>
 

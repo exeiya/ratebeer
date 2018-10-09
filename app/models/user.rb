@@ -13,6 +13,11 @@ class User < ApplicationRecord
                        format: { with: /\A(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*\z/,
                                  message: "must contain a lowercase letter, an uppercase letter and a digit" }
 
+  def self.top(n)
+    sorted_by_rating_in_desc_order = User.all.sort_by{ |u| -(u.ratings.count || 0) }
+    sorted_by_rating_in_desc_order.take n
+  end
+                                 
   def favorite_beer
     return nil if ratings.empty?
 
