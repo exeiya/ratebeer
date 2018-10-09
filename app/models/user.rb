@@ -13,11 +13,11 @@ class User < ApplicationRecord
                        format: { with: /\A(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*\z/,
                                  message: "must contain a lowercase letter, an uppercase letter and a digit" }
 
-  def self.top(n)
+  def self.top(amount)
     sorted_by_rating_in_desc_order = User.all.sort_by{ |u| -(u.ratings.count || 0) }
-    sorted_by_rating_in_desc_order.take n
+    sorted_by_rating_in_desc_order.take amount
   end
-                                 
+
   def favorite_beer
     return nil if ratings.empty?
 
@@ -25,22 +25,25 @@ class User < ApplicationRecord
   end
 
   def favorite_style
-    return nil if ratings.empty?
-
-    rated_styles_average = ratings.group_by{ |r| r.beer.style }.map do |style, rs|
-      ratings_sum = rs.reduce(0){ |sum, r| sum + r.score }
-      { style: style, average: ratings_sum / rs.size }
-    end
-    rated_styles_average.max_by{ |hsh| hsh[:average] }[:style]
+    favorite(:style)
   end
 
   def favorite_brewery
+    favorite(:brewery)
+  end
+
+  def favorite(groupped_by)
     return nil if ratings.empty?
 
-    rated_breweries_average = ratings.group_by{ |r| r.beer.brewery }.map do |brewery, rs|
-      ratings_sum = rs.reduce(0){ |sum, r| sum + r.score }
-      { brewery: brewery, average: ratings_sum / rs.size }
+    grouped_ratings = ratings.group_by{ |r| r.beer.send(groupped_by) }
+    averages = grouped_ratings.map do |group, ratings|
+      { group: group, score: average_of(ratings) }
     end
-    rated_breweries_average.max_by{ |hsh| hsh[:average] }[:brewery]
+
+    averages.max_by{ |r| r[:score] }[:group]
+  end
+
+  def average_of(ratings)
+    ratings.sum(&:score).to_f / ratings.count
   end
 end

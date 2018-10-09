@@ -35,12 +35,12 @@ describe "Rating" do
       
     end
 
-    it "page list ratings and their total number" do
+    it "page list recent ratings and their total number" do
       visit ratings_path
 
-      expect(page).to have_content "iso 3 13 Pekka"
-      expect(page).to have_content "Karhu 22 Pekka"
-      expect(page).to have_content "Karhu 15 Maija"
+      expect(page).to have_content "iso 3 13 by Pekka"
+      expect(page).to have_content "Karhu 22 by Pekka"
+      expect(page).to have_content "Karhu 15 by Maija"
       expect(page).to have_content "Number of ratings: 3"
     end
 
