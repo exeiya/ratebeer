@@ -1,7 +1,8 @@
-<p>
-  <strong>Name:</strong>
+<% cache @beer do %> 
+
+<h2>
   <%= @beer.name %>
-</p>
+</h2>
 
 <p>
   <strong>Style:</strong>
@@ -20,6 +21,8 @@
     Has <%= pluralize(@beer.ratings.size, 'rating') %>, average <%= round(@beer.average_rating) %>
   <% end %>
 </p>
+
+<% end %>
 
 <% if current_user %>
   <h4>give a rating:</h4>
