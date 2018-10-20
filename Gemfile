@@ -22,6 +22,8 @@ gem 'httparty'
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap', '~> 4.1.3'
 gem 'jquery-rails'
+gem 'sucker_punch', '~> 2.0'
+gem 'omniauth-github'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.11'

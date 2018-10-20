@@ -13,6 +13,11 @@ class User < ApplicationRecord
                        format: { with: /\A(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*\z/,
                                  message: "must contain a lowercase letter, an uppercase letter and a digit" }
 
+  def self.create_oauth_user(username)
+    password = SecureRandom.urlsafe_base64(n=6)
+    User.create username: username, password: password
+  end
+
   def self.top(amount)
     sorted_by_rating_in_desc_order = User.all.sort_by{ |u| -(u.ratings.count || 0) }
     sorted_by_rating_in_desc_order.take amount
