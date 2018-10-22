@@ -14,7 +14,7 @@ class User < ApplicationRecord
                                  message: "must contain a lowercase letter, an uppercase letter and a digit" }
 
   def self.create_oauth_user(username)
-    password = SecureRandom.urlsafe_base64(n=6)
+    password = SecureRandom.urlsafe_base64(6)
     User.create username: username, password: password
   end
 

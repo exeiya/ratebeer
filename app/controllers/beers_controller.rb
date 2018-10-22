@@ -17,10 +17,10 @@ class BeersController < ApplicationController
 
     @beers = Beer.includes(:brewery, :style).all
     @beers = case @order
-      when 'name' then @beers.sort_by(&:name)
-      when 'brewery' then @beers.sort_by{ |b| b.brewery.name }
-      when 'style' then @beers.sort_by{ |b| b.style.name }
-    end
+             when 'name' then @beers.sort_by(&:name)
+             when 'brewery' then @beers.sort_by{ |b| b.brewery.name }
+             when 'style' then @beers.sort_by{ |b| b.style.name }
+             end
   end
 
   # GET /beers/1
